@@ -125,5 +125,4 @@ textPaint.textHeight().div(2) - textPaint.descent()
                 canvas.restoreToCount(sc)
 ```
 
-6.动画的使用，与交替。这一点比较简单的ValueAnimator的使用，设置属性，Listener即可。有兴趣可参考源码
-[我是源码](https://github.com/hewking/HaloImageProgressView/blob/master/app/src/main/java/com/hewking/halo/HaloProgressView.kt)
+6.动画的使用，与交替。这一点比较简单的ValueAnimator的使用，设置属性，Listener即可。
