@@ -54,8 +54,8 @@ class HaloProgressView(context: Context?, attrs: AttributeSet?) : ImageView(cont
 
     init {
         val typedArray = context?.obtainStyledAttributes(attrs,R.styleable.HaloProgressView)
-        outRadius = typedArray?.getFloat(R.styleable.HaloProgressView_outRadius,outRadius)?:outRadius
-        innRaduus = typedArray?.getFloat(R.styleable.HaloProgressView_innRaduus,innRaduus)?:innRaduus
+        outRadius = typedArray?.getDimension(R.styleable.HaloProgressView_outRadius,outRadius)?:outRadius
+        innRaduus = typedArray?.getDimension(R.styleable.HaloProgressView_innRaduus,innRaduus)?:innRaduus
         progress = typedArray?.getInteger(R.styleable.HaloProgressView_progress,progress)?:progress
         typedArray?.recycle()
         paint.isAntiAlias = true

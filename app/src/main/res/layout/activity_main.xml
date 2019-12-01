@@ -13,6 +13,8 @@
             android:layout_marginTop="20dp"
             android:src="@drawable/asm_logo"
             android:scaleType="centerCrop"
+            app:outRadius="60dp"
+            app:innRaduus="45dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"

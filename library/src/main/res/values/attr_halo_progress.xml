@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="HaloProgressView">
-        <attr name="outRadius" format="float"/>
-        <attr name="innRaduus" format="float"/>
+        <attr name="outRadius" format="dimension"/>
+        <attr name="innRaduus" format="dimension"/>
         <attr name="progress" format="integer"/>
     </declare-styleable>
 </resources>
