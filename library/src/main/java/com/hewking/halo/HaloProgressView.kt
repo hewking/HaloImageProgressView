@@ -10,9 +10,11 @@ import android.util.AttributeSet
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.BounceInterpolator
 import android.widget.ImageView
+import com.example.library.BuildConfig
+import com.example.library.R
 
 /**
- * Created by test on 2017/11/26.
+ * Created by hewking on 2017/11/26.
  */
 class HaloProgressView(context: Context?, attrs: AttributeSet?) : ImageView(context, attrs) {
 
@@ -21,7 +23,6 @@ class HaloProgressView(context: Context?, attrs: AttributeSet?) : ImageView(cont
         private const val PROGRESS = 2
         private const val FINISH = 3
     }
-
 
     private var status: Int = PROGRESS
 
@@ -47,9 +48,17 @@ class HaloProgressView(context: Context?, attrs: AttributeSet?) : ImageView(cont
         }
     }
 
-    init {
-        paint.isAntiAlias = true
+    private val path by lazy {
+        Path()
+    }
 
+    init {
+        val typedArray = context?.obtainStyledAttributes(attrs,R.styleable.HaloProgressView)
+        outRadius = typedArray?.getFloat(R.styleable.HaloProgressView_outRadius,outRadius)?:outRadius
+        innRaduus = typedArray?.getFloat(R.styleable.HaloProgressView_innRaduus,innRaduus)?:innRaduus
+        progress = typedArray?.getInteger(R.styleable.HaloProgressView_progress,progress)?:progress
+        typedArray?.recycle()
+        paint.isAntiAlias = true
         debugProgressStart()
     }
 
@@ -98,13 +107,13 @@ class HaloProgressView(context: Context?, attrs: AttributeSet?) : ImageView(cont
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
-        anin?.start()
+        anim?.start()
 
     }
 
     private var animatorValue: Float = 0f
 
-    private val anin by lazy {
+    private val anim by lazy {
         ObjectAnimator.ofFloat(0f, 1f).apply {
             duration = 700
             repeatCount = ValueAnimator.INFINITE
@@ -118,7 +127,6 @@ class HaloProgressView(context: Context?, attrs: AttributeSet?) : ImageView(cont
 
     override fun onDraw(canvas: Canvas?) {
         canvas ?: return
-        val path = Path()
         canvas.save()
         path.addRoundRect(RectF(0f, 0f, width.toFloat(), height.toFloat())
                 , round, round, Path.Direction.CW)
@@ -170,7 +178,7 @@ class HaloProgressView(context: Context?, attrs: AttributeSet?) : ImageView(cont
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-
+        anim?.end()
     }
 
 }
